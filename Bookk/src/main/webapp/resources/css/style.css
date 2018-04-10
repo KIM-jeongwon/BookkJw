@@ -1,0 +1,58 @@
+@charset "UTF-8";
+.img-1-btn{
+	width: 200px;
+	height: 200px
+}
+.board-li{
+  background: #000; width: 15px; height: 15px; border-radius: 50%;
+}
+/* 마우스 오버(마우스 올렸을때) */
+.board-li:hover{
+    background:#000; width: 15px; height: 15px; border-radius: 50%;
+}
+/* 마우스 클릭하고있을때 */
+.board-li:active{
+    background:#000; width: 15px; height: 15px; border-radius: 50%;
+}
+a:link{color:black;}
+a:visited{color:green;}
+a:hover{color:blue;}
+a:active{color:red;}
+a{text-decoration:none !important}
+
+button{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
