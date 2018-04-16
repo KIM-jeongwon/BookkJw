@@ -1,8 +1,5 @@
 @charset "UTF-8";
-.img-1-btn{
-	width: 200px;
-	height: 200px
-}
+
 .board-li{
   background: #000; width: 15px; height: 15px; border-radius: 50%;
 }
@@ -16,11 +13,11 @@
 }
 a:link{color:black;}
 a:visited{color:green;}
-a:hover{color:blue;}
+a:hover{color:pink;}
 a:active{color:red;}
 a{text-decoration:none !important}
 
-button{
+.button{
   background:#1AAB8A;
   color:#fff;
   border:none;
@@ -32,11 +29,11 @@ button{
   transition:800ms ease all;
   outline:none;
 }
-button:hover{
+.button:hover{
   background:#fff;
   color:#1AAB8A;
 }
-button:before,button:after{
+.button:before,button:after{
   content:'';
   position:absolute;
   top:0;
@@ -46,13 +43,15 @@ button:before,button:after{
   background: #1AAB8A;
   transition:400ms ease all;
 }
-button:after{
+.button:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button:hover:before,button:hover:after{
+.button:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
+
+.pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}

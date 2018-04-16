@@ -22,7 +22,7 @@
 		<context:annotation-config/>
     <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/resources/" />
-    <mybatis-spring:scan base-package="com.bookk.web.controller"/>
+    <mybatis-spring:scan base-package="com.bookk.web.mapper"/>
     <context:property-placeholder location="classpath:config/jdbc.properties"/>
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
     <bean id="dataSource" 
@@ -76,5 +76,5 @@
     </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
     
-    <context:component-scan base-package="com.bookk.web.controller" />
+    <context:component-scan base-package="com.bookk.web"/>
 </beans>
