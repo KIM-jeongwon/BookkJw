@@ -126,20 +126,20 @@ app.board=(()=>{
 				.attr('style','margin:0px; padding:0px; list-style:none; ');
 			$(createLI({id:'1-left-li',clazz:''})).appendTo('#left-ul')
 				.attr('style',' height: 60px; line-height: 60px; border: 1px solid green; text-align: center; margin-top: -1px;');
-			$(createATag({id:'1-left-atag',link:'#',val:'자유게시판'})).appendTo('#1-left-li')
+			$(createATag({id:'1-left-atag',val:'자유게시판'})).appendTo('#1-left-li')
 				.attr('style','padding:10px 50px 10px 50px;')
 				.on('click',()=>{
 					app.jau.onCreate();
 				});
 			$(createLI({id:'2-left-li',clazz:''})).appendTo('#left-ul')
 				.attr('style',' height: 60px; line-height: 60px; border: 1px solid green; text-align: center; margin-top: -1px; ');;
-			$(createATag({id:'2-left-atag',link:'#',val:'작가노하우'})).appendTo('#2-left-li')
+			$(createATag({id:'2-left-atag',val:'작가노하우'})).appendTo('#2-left-li')
 			.on('click',()=>{
 				$('#right-side').html()
 			});
 			$(createLI({id:'3-left-li',clazz:''})).appendTo('#left-ul')
 				.attr('style',' height: 60px; line-height: 60px; border: 1px solid green; text-align: center; margin-top: -1px;');;
-			$(createATag({id:'3-left-atag',link:'#',val:'독서토론'})).appendTo('#3-left-li');
+			$(createATag({id:'3-left-atag',val:'독서토론'})).appendTo('#3-left-li');
 		
 			// 오른쪽 상세내용
 			$(createDiv({id:'new-right-side',clazz:''})).appendTo('#borders-h');
@@ -165,7 +165,7 @@ app.jau=(()=>{
 			.attr('style',' border: 1px solid red;padding:10px; border:1px solid red; margin-bottom: 30px; '));
 			$(createDiv({id:'board-all',clazz:''})).appendTo('#right-side');
 			$(createDiv({id:'board-title',clazz:'col-sm-3'})).appendTo('#board-all');
-			$(createHTag({num:'4',val:'자유게시판'})).appendTo('#board-title')
+			$(createHTag({size:'4',val:'자유게시판'})).appendTo('#board-title')
 			.attr('style','border-left:5px solid #10b5cf; font-size:24px;');
 			
 			$(createDiv({id:'board-search',clazz:'col-sm-7'})).appendTo('#right-side');
@@ -203,7 +203,13 @@ app.jau=(()=>{
 				$('._1').attr('style','text-align:left;').attr('class','col-sm-7');
 				$('._2').attr('class','col-sm-1');
 				$('._3').attr('class','col-sm-1');
-				$('._4').attr('class','col-sm-2');		
+				$('._4').attr('class','col-sm-2');	
+				
+				for(var i=1; i<=d.page.pageSIze;i++){
+					$('#td_'+i+'_0').attr('onClick','alert("'+$('#td_'+i+'_0').text()+'")')
+					
+				}
+				
 				$(createDiv({id:'lat',clazz:'col-sm-1'})).appendTo('#new-right-side');		
 				// pagenation
 				$(createDiv({id:'div-page',clazz:''})).appendTo('#div-articles')
@@ -212,27 +218,27 @@ app.jau=(()=>{
 				var t = '';
 				if(d.page.preBlock){
 					t+=$(createLI({id:'li-pre-page',clazz:''})).appendTo('#ul-page');
-					t+=$(createATag({id:'a-pre-page',link:'#',val:''})).appendTo('#li-pre-page')
+					t+=$(createATag({id:'a-pre-page',val:''})).appendTo('#li-pre-page')
 					.attr('onClick','app.jau.articles('+(d.page.prev)+'); return false;');									
-					t+=$(createSpan({id:'',clazz:'glyphicon-hand-left',val:''})).appendTo('#a-pre-page');
+					t+=$(createSpanJW({id:'',clazz:'glyphicon glyphicon-hand-left',val:''})).appendTo('#a-pre-page');
 				}
 				for(var i=d.page.pageStart; i<=d.page.pageEnd; i++){
 
 					if(i==d.page.pageNum){
 						t+= $(createLI({id:'li-page-'+i,clazz:'active'})).appendTo('#ul-page');
-						t+=$(createATag({id:'a-pageNum',link:'#',val:i})).appendTo('#li-page-'+i);
+						t+=$(createATag({id:'a-pageNum',val:i})).appendTo('#li-page-'+i);
 
 					}else{
 						t+= $(createLI({id:'li-page-'+i,clazz:''})).appendTo('#ul-page');
-						t+=$(createATag({id:'a-else-pageNum',link:'#',val:i})).appendTo('#li-page-'+i)			
+						t+=$(createATag({id:'a-else-pageNum',val:i})).appendTo('#li-page-'+i)			
 						.attr('onClick','app.jau.articles('+i+'); return false;');
 					}
 				}
 				if(d.page.nextBlock){
 					t+=$(createLI({id:'li-next-page',clazz:''})).appendTo('#ul-page');
-					t+=$(createATag({id:'a-next-page',link:'#',val:''})).appendTo('#li-next-page')
+					t+=$(createATag({id:'a-next-page',val:''})).appendTo('#li-next-page')
 					.attr('onClick','app.jau.articles('+(d.page.next)+'); return false;');		
-					t+=$(createSpan({id:'',clazz:'glyphicon-hand-right',val:''})).appendTo('#a-next-page');
+					t+=$(createSpanJW({id:'',clazz:'glyphicon glyphicon-hand-right',val:''})).appendTo('#a-next-page');
 				};
 			});
 		});
@@ -243,9 +249,9 @@ app.jau=(()=>{
 			$('#right-side').html($(createDiv({id:'articleW-right-side',clazz:'col-sm-12'})))
 				.attr('style','border: 1px solid red;weight:100%;');
 			$(createDiv({id:'articleW-right-header',clazz:''})).appendTo('#articleW-right-side').attr('style','padding:20px;')
-			$(createHTag({num:'4',val:'자유게시판  |  '})).appendTo('#articleW-right-header')
+			$(createHTag({size:'4',val:'자유게시판  |  '})).appendTo('#articleW-right-header')
 			.attr('style','float:left; border-left:5px solid blueviolet;padding-left: 5px;');
-			$(createSpan({id:'',clazz:'',val:'자유로운 소식을 전해주세요.'})).appendTo('#articleW-right-header')
+			$(createSpanJW({id:'',clazz:'',val:'자유로운 소식을 전해주세요.'})).appendTo('#articleW-right-header')
 				.attr('style','float:left; padding:10px;');
 /*			$('#div-articles').html($(createDiv({id:'articleW-form-body',clazz:''})))
 			.attr('style',' font-size: 14px; border : 2px solid blue');*/
@@ -269,7 +275,7 @@ app.jau=(()=>{
 			.attr('style','width:400px; margin-left :10px; height:30px;').appendTo('#articleW-right-select');
 			$(createDiv({id:'file-upload',clazz:''})).appendTo('#articleW-right-form')
 			.attr('style','border : 1px solid green');
-			$(createHTag({num:'4',val:'fileUpload'})).appendTo('#file-upload');
+			$(createHTag({size:'4',val:'fileUpload'})).appendTo('#file-upload');
 			$(createDiv({id:'div-input-content',clazz:''})).appendTo('#articleW-right-form');
 			$(textarea({id:'jw-text'}))
 			.attr('class','form-control')

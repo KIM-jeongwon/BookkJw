@@ -2,16 +2,13 @@ var createButton=x=>{
 	return '<button type ="button" id="'+x.id+'" class="btn '+x.clazz+'">'+x.val+'</button>';
 }
 var createATag=x=>{
-	return '<a id="'+x.id+'" href="'+x.link+'">'+x.val+'</a>';
+	return '<a id="'+x.id+'" href="#">'+x.val+'</a>';
 };
-var createSpan=x=>{
-	return '<span id="'+x.id+'" class="glyphicon ' +x.clazz+'" aria-hidden="true">&nbsp;'+x.val+'</span>'
+var createSpanJW=x=>{
+	return '<span id="'+x.id+'" class="' +x.clazz+'" aria-hidden="true">&nbsp;'+x.val+'</span>'
 };
-var createBorderATag=x=>{
-	return '<a id="'+x.id+'" href="'+x.link+'" clazz:"'+x.clazz+'" role="'+x.role+'" data-slide="'+x.slide+'" >'+x.val+'</a>';
-}
 var createHTag=x=>{
-	return '<h'+x.num+'>'+x.val+'</h'+x.num+'>';
+	return '<h'+x.size+'>'+x.val+'</h'+x.size+'>';
 };
 
 var createDiv=x=>{
@@ -19,29 +16,12 @@ var createDiv=x=>{
 };
 var createUL=x=>{
 	return '<ul id="'+x.id+'" class="'+x.clazz+'"></ul>';
-	}
+}
 var createLI=x=>{
 	return '<li id="'+x.id+'" class="'+x.clazz+'"></li>';
 }
-var createInputText=x=>{
-	return $('<input type="text" id="'+x.id+'"class="'+x.clazz
-      +'"placeholder="example">');
-}
-var createInputButton=x=>{
-	return '<input type="'+x.type+'" class ="'+x.clazz+'"/>'
-}
 var createButton=x=>{
     return  '<button id="'+x.id+'" class = "'+x.clazz+'">'+x.val+'</button>';
-}
-
-var createText=x=>{
-	return '<span id="'+x+'"></span>';
-}
-var createHeader=x=>{
-	return '<header></header>'
-}
-var createFooter=x=>{
-	return '<footer></footer>'
 }
 var createOL=x=>{
 	return '<ol id="'+x.id+'"class="'+x.clazz+'"></ol>';
@@ -81,23 +61,23 @@ var createTRJW =x=>{
 	var tr = '';
 	$.each(x.list, (i,j)=>{
 		tr+='<tr id="jw_'+(q++)+'" class ="'+x.clazz+'">'
-		+createTDJW(j)+'</tr>';
+		+createTDJW({j:j,q:q})+'</tr>';
 	});
 	return tr;
 }
 var createTDJW=x=>{
 	var td ='';
 	var w =0;
-	td +='<td id="td_'+w+'" class = "'+'_'+(w++)+'">'
-	+x.bID+'</td>';
-	td +='<td id="td_'+w+'" class = "'+'_'+(w++)+'" >'
-	+x.title+'</td>';
-	td +='<td id="td_'+w+'" class = "'+'_'+(w++)+'" >'
-	+x.memID+'</td>';
-	td +='<td id="td_'+w+'" class = "'+'_'+(w++)+'">'
-	+x.viewNum+'</td>';
-	td +='<td id="td_'+w+'" class = "'+'_'+(w++)+'">'
-	+x.createDate+'</td>';
+	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+(w++)+'">'
+	+x.j.bID+'</td>';
+	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+(w++)+'" >'
+	+x.j.title+'</td>';
+	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+(w++)+'" >'
+	+x.j.memID+'</td>';
+	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+(w++)+'">'
+	+x.j.viewNum+'</td>';
+	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+(w++)+'">'
+	+x.j.createDate+'</td>';
 	return td;
 }
 var createFont=x=>{
