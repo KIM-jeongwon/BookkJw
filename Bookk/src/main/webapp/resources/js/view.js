@@ -70,8 +70,8 @@ var createTDJW=x=>{
 	var w =0;
 	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+(w++)+'">'
 	+x.j.bID+'</td>';
-	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+(w++)+'" >'
-	+x.j.title+'</td>';
+	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+w+'" ><a id="a_'+x.q+'_'+(w++)+'">'
+	+x.j.title+'</a></td>';
 	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+(w++)+'" >'
 	+x.j.memID+'</td>';
 	td +='<td id="td_'+x.q+'_'+w+'" class = "'+'_'+(w++)+'">'

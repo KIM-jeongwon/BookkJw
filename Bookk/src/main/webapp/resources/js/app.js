@@ -171,12 +171,35 @@ app.jau=(()=>{
 			$(createDiv({id:'board-search',clazz:'col-sm-7'})).appendTo('#right-side');
 			$(createForm({id:'search-form',clazz:'form-inline'})).appendTo('#board-search');
 			$(createSelect({id:'select'})).appendTo('#search-form').attr('class','form-control');
-			$(createOption({val:'title',txt:'제목'})).appendTo('#select').attr('select','selected');
+			$(createOption({val:'co_title',txt:'제목'})).appendTo('#select').attr('select','selected');
 			$(createOption({val:'titleContent',txt:'제목+내용'})).appendTo('#select');
 			$(createOption({val:'content',txt:'내용'})).appendTo('#select');
-			$(createInput({id:'',clazz:'form-control',type:'search'})).appendTo('#search-form').attr('placeholder','Search..');
+			$(createInput({id:'select-text',clazz:'form-control',type:'search'})).appendTo('#search-form').attr('placeholder','Search..');
 			// 검색 엔진
-			$(createButton({id:'',clazz:'btn btn-primary',val:'검색'})).appendTo('#search-form').attr('type','submit');
+			$(createButton({id:'',clazz:'btn btn-primary',val:'검색'})).appendTo('#search-form').attr('type','submit')
+			.on('click',e=>{
+				alert('검색 ');
+				e.preventDefault();
+				var select = $('#select').val();
+				alert('얍 : '+select);
+				$.ajax({
+						url : context+'/searchArticle/'+select,
+						data:JSON.stringify({
+							type : select,
+							data : $('#select-text').val()
+						}),
+						dataType:'json',
+						contentType:'application/json',
+						method : 'POST',
+						success: x=>{
+							alert('ㅅㅅ');
+							//검색결과
+							$('#jw-page').html(data);
+							
+						},
+						error : function(x,s,m){alert(m);}
+				});
+			});
 			$(createDiv({id:'btn-write',clazz:'col-sm-2'})).appendTo('#right-side');
 			// 글쓰기
 			$(createButton({id:'',clazz:'btn btn-primary',val:'글쓰기'})).appendTo('#btn-write').attr('type','button')
@@ -190,8 +213,7 @@ app.jau=(()=>{
 		};
 	var articles=x=>{
 		$.getJSON(context+'/articles/'+x, d=>{
-			$.getScript(view, ()=>{	
-				
+			$.getScript(view, ()=>{					
 				$('#jw-page').html(createDiv({id:'div-articles',clazz:'col-sm-8'}))
 					.attr('style','border :1px solid blue; padding:0px;');
 				$(createTab({id:'tab-articles',clazz:''})).appendTo('#div-articles')
@@ -204,12 +226,6 @@ app.jau=(()=>{
 				$('._2').attr('class','col-sm-1');
 				$('._3').attr('class','col-sm-1');
 				$('._4').attr('class','col-sm-2');	
-				
-				for(var i=1; i<=d.page.pageSIze;i++){
-					$('#td_'+i+'_0').attr('onClick','alert("'+$('#td_'+i+'_0').text()+'")')
-					
-				}
-				
 				$(createDiv({id:'lat',clazz:'col-sm-1'})).appendTo('#new-right-side');		
 				// pagenation
 				$(createDiv({id:'div-page',clazz:''})).appendTo('#div-articles')
@@ -240,6 +256,10 @@ app.jau=(()=>{
 					.attr('onClick','app.jau.articles('+(d.page.next)+'); return false;');		
 					t+=$(createSpanJW({id:'',clazz:'glyphicon glyphicon-hand-right',val:''})).appendTo('#a-next-page');
 				};
+				// 게시글 확인				
+				for(var i=1; i<=d.page.pageSIze;i++){
+					$('#a_'+i+'_1').attr('onClick','alert("'+$('#a_'+i+'_1').text()+'")');
+				}
 			});
 		});
 	};
